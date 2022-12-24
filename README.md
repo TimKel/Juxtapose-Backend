@@ -29,9 +29,14 @@ All stats are pulled from FantasyData's SportsDataAPI using Axios
 
 ## Database Schema
 --- 
+DB is SQL using Postgres. There are two tables, Users and Players. User passwords are encrypted using BCrypt. Users will have a one-to-many relationship with Players as they can add/delete players from their roster.
+
 ![DB-Schema](https://user-images.githubusercontent.com/91156228/209449620-8726ef2d-3fc5-46f2-bec4-67ff751c3b78.png)
 
 
 ## User Flow
 --- 
 Juxtapose is a Single Page Application using React. Users will need to create an account which will enable them to not only submit players to aid in decision making, but also recreate their roster from their existing League for quick updates and comparisons.
+
+![User Flow](https://user-images.githubusercontent.com/91156228/209449636-d9b215a1-83ac-40ac-80f9-54f8bfc7e40d.png)
+
