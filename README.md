@@ -29,6 +29,7 @@ All stats are pulled from FantasyData's SportsDataAPI using Axios
 
 ## Database Schema
 --- 
+![DB-Schema](https://user-images.githubusercontent.com/91156228/209449620-8726ef2d-3fc5-46f2-bec4-67ff751c3b78.png)
 
 
 ## User Flow
