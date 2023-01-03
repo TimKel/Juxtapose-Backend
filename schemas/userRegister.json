@@ -1,0 +1,61 @@
+{
+    "$schema": "https://json-schema.org/draft/2019-09/schema",
+    "$id": "http://example.com/example.json",
+    "type": "object",
+    "default": {},
+    "title": "User Register",
+    "required": [
+        "username",
+        "password",
+        "firstName",
+        "lastName"
+    ],
+    "properties": {
+        "username": {
+            "type": "string",
+            "default": "",
+            "title": "The username Schema",
+            "examples": [
+                "TimKels"
+            ],
+            "minLength": "5",
+            "maxLength": "20"
+        },
+        "password": {
+            "type": "string",
+            "default": "",
+            "title": "The password Schema",
+            "examples": [
+                "passwords"
+            ],
+            "minLength": "5",
+            "maxLength": "15"
+        },
+        "firstName": {
+            "type": "string",
+            "default": "",
+            "title": "The firstName Schema",
+            "examples": [
+                "Tim"
+            ],
+            "minLength": "1",
+            "maxLength": "15"
+        },
+        "lastName": {
+            "type": "string",
+            "default": "",
+            "title": "The lastName Schema",
+            "examples": [
+                "Kelley"
+            ],
+            "minLength": "1",
+            "maxLength": "15"
+        }
+    },
+    "examples": [{
+        "username": "TimKels",
+        "password": "passwords",
+        "firstName": "Tim",
+        "lastName": "Kelley"
+    }]
+}
