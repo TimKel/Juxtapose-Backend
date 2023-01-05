@@ -13,13 +13,14 @@ CREATE TABLE players (
     photo_url TEXT,
     team TEXT NOT NULL,
     position TEXT NOT NULL,
-    player_id INTEGER NOT NULL
-)
+    player_id INTEGER,
+    user_id INTEGER REFERENCES users(id)
+);
 
-CREATE TABLE roster (
-    user_id INTEGER 
-        FOREIGN KEY (users_id) REFERENCES users(id),
-    player_id INTEGER
-        FOREIGN KEY (player_id) REFERENCES players(player_id),
-    PRIMARY KEY (user_id, player_id),
-)
+-- CREATE TABLE roster (
+--     user_id INTEGER 
+--         FOREIGN KEY (user_id) REFERENCES users(id),
+--     player_id INTEGER
+--         FOREIGN KEY (player_id) REFERENCES players(player_id),
+--     PRIMARY KEY (user_id, player_id)
+-- );
