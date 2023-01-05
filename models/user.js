@@ -190,6 +190,77 @@ class User {
         }
 
         //ADD PLAYER TO USERS ROSTER??
+        static async getRoster(user_id){
+            let result = await db.query(
+                `SELECT * FROM players
+                WHERE user_id = $1
+                RETURNING full_name AS "fullName",
+                            photo_url AS "photoUrl",
+                            team, position`,
+                            [user_id]
+            );
+            const roster = result.rows;
+
+            if (!roster) throw new NotFoundError("No roster saved");
+        }
+
+        static async addPlayerToRoster(user_id, player_id){
+            let result = await db.query(
+                `INSERT INTO players
+                    (full_name,
+                    player_id,
+                    photo_url,
+                    team,
+                    position,
+                    user_id)
+                    VALUES ($1, $2, $3, $4, $5, $6)
+                    WHERE user_id = user.id
+                    RETURNING full_name AS "fullName",
+                    player_id AS "playerId",
+                    photo_url AS "photoUrl",
+                    team, position, user_id as userId`,
+                    [full_name,
+                    player_id,
+                    photo_url,
+                    team,
+                    position,
+                    user_id]
+            );
+            const player = result.rows[0];
+            
+            if (!player) throw new NotFoundError(`${full_name} NOT successfully added`)
+            return player;
+        }
+
+        static async viewPlayer(full_name){
+            const playerRes = await db.query(
+                `SELECT full_name as "fullName",
+                        photo_url as "photoUrl",
+                        team, position
+                FROM players
+                WHERE full_name = $1`,
+                [full_name]
+            );
+
+            const player = playerRes.rows[0];
+
+            if (!player) throw new NotFoundError(`No player: ${full_name}`);
+
+            return player;
+            // ====>>> MIGHT BE SPOT FOR GETTING USERS ROSTER
+        }
+
+        static async removePlayerFromRoster(full_name){
+            const result = await db.query(
+                `DELETE FROM players
+                WHERE full_name = $1
+                RETURNING full_name`,
+                [full_name]
+            )
+            const playerRemoved = result.rows[0];
+
+            if (!playerRemoved) throw new NotFoundError(`${full_name} not found or removed from roster`);
+        }
 
 }
 
